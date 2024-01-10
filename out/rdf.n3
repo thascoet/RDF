@@ -1,0 +1,47 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix bm: <http://www.bm-enssat.fr#> .
+
+# Comments
+# Primitive types
+# <http://www.w3.org/2001/XMLSchema#integer>
+# <http://www.w3.org/2001/XMLSchema#string>
+# Constant declaration
+# <http://www.w3.org/1999/02/22-rdf-syntax-ns#Literal>
+
+# Ontological Constraints - RDFS statements
+bm:name rdfs:domain bm:unit .
+bm:name rdfs:range rdf:Literal .
+bm:refTeacher rdfs:domain bm:unit .
+bm:refTeacher rdfs:range bm:teacher .
+bm:responsible rdfs:subClassOf bm:teacher .
+bm:refResponsible rdfs:subPropertyOf bm:refTeacher .
+bm:refResponsible rdfs:range bm:responsible .
+bm:refMidTermExamResult rdfs:domain bm:unit .
+bm:refMidTermExamResult rdfs:range bm:examResult .
+bm:refFinalExamResult rdfs:domain bm:unit .
+bm:refFinalExamResult rdfs:range bm:examResult .
+bm:mark rdfs:domain bm:examResult .
+bm:mark rdfs:range rdf:Literal . 
+bm:unitTalkExam rdfs:subClassOf bm:unit .
+bm:unitRegularExam rdfs:subClassOf bm:unit .
+bm:prerequisite rdfs:domain bm:unit .
+bm:prerequisite rdfs:range bm:unit .
+
+bm:WebDataManagementUnit bm:name "Web Data Management" .
+bm:FrancoisGoasdoue rdf:type bm:teacher .
+bm:WebDataManagementUnit bm:refResponsible bm:FrancoisGoasdoue .
+bm:WebDataManagementUnit rdf:type bm:unitTalkExam .
+bm:WebDataManagementUnit bm:prerequisite bm:DatabasesUnit .
+bm:DatabasesUnit bm:name "Databases" .
+bm:DatabasesUnit bm:refTeacher bm:EmmanuelWaller .
+bm:DatabasesUnit bm:refResponsible bm:NicoleBidoit .
+bm:DatabasesUnit rdf:type bm:unitRegularExam .
+bm:examResultWDMMid bm:mark 12 .
+bm:examResultWDMFinal bm:mark 11 .
+bm:WebDataManagementUnit bm:refMidTermExamResult bm:examResultWDMMid .
+bm:WebDataManagementUnit bm:refFinalExamResult bm:examResultWDMFinal .
+bm:examResultDBMid bm:mark 12 .
+bm:examResultDBFinal bm:mark 10 .
+bm:DatabasesUnit bm:refMidTermExamResult bm:examResultDBMid .
+bm:DatabasesUnit bm:refFinalExamResult bm:examResultDBFinal .
